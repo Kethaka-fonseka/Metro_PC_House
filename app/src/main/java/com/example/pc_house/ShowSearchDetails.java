@@ -36,6 +36,8 @@ public class ShowSearchDetails extends AppCompatActivity {
         adapter = new SearchAdapter(this, searchList);
         recyclerView.setAdapter(adapter);
         dbRef= FirebaseDatabase.getInstance().getReference().child("Item");
+
+        //search given item and retrive
         dbRef.orderByChild("name")
                 .startAt(queryText)
                 .endAt(queryText+"\uf8ff").addValueEventListener(new ValueEventListener() {

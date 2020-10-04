@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +33,9 @@ public class Cart extends AppCompatActivity {
     DatabaseReference dbRef;
     ImageView home;
     Button checkout;
+    Button searchBtn;
+    EditText searchText;
+    ImageView cart,profile,category;
     FirebaseAuth firebaseAuth;
     TextView total;
     double sum;
@@ -41,7 +45,13 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         firebaseAuth=FirebaseAuth.getInstance();
+        searchText=findViewById(R.id.searching_text);
+        searchBtn=findViewById(R.id.search_button_main);
+
         total=findViewById(R.id.PriceView);
+        cart=findViewById(R.id.cart);
+        category=findViewById(R.id.categoryBtn);
+        profile=findViewById(R.id.btnProfile);
         sum=0.0;
         checkout=findViewById(R.id.cartCheck);
         home=findViewById(R.id.homeImage);
@@ -51,6 +61,8 @@ public class Cart extends AppCompatActivity {
         cartList = new ArrayList<>();
         adapter = new CartAdapter(this, cartList);
         recyclerView.setAdapter(adapter);
+
+        //retrive list of items in the cart
         dbRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(firebaseAuth.getCurrentUser().getUid());
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -101,7 +113,7 @@ public class Cart extends AppCompatActivity {
 
             }
         });
-
+//add items from items  from cart to order
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +130,39 @@ public class Cart extends AppCompatActivity {
             }
         });
 
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Cart.class));
+            }
+        });
+
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CustomerProfile.class );
+                startActivity(intent);
+            }
+        });
+
+        category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Category.class));
+            }
+        });
+
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String msg=searchText.getText().toString();
+                Intent intent=new Intent(getApplicationContext(),ShowSearchDetails.class);
+                intent.putExtra("msg",msg);
+                startActivity(intent);
+            }
+        });
 
 
     }

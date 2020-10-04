@@ -59,7 +59,7 @@
                 android:layout_margin="20dp"
                 android:ems="10"
                 android:hint="@string/Reg_password"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword" />
 
             <EditText
                 android:id="@+id/Reg_conpass"
@@ -68,7 +68,7 @@
                 android:layout_margin="20dp"
                 android:ems="10"
                 android:hint="@string/Reg_con"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword" />
 
         </LinearLayout>
 

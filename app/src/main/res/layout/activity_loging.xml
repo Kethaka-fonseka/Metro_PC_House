@@ -42,7 +42,7 @@
             android:layout_marginBottom="110dp"
             android:ems="10"
             android:hint="@string/log_pass"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword" />
     </RelativeLayout>
 
     <TextView
