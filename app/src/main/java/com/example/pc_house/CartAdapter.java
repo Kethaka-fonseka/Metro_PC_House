@@ -41,6 +41,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         this.cartList = cartList;
     }
 
+    public CartAdapter() {
+
+    }
+
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -71,7 +75,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 dbRef=FirebaseDatabase.getInstance().getReference().child("Cart").child(fAuth.getCurrentUser().getUid()).child(String.valueOf(cart.getID()));
 
                 notifyItemRangeChanged(position,cartList.size());
-                double Unitprice=cart.getPrice()/cart.getQty();
+                double Unitprice=getUnitPrice(cart.getPrice(),cart.getQty());
+
                 int qty=cart.getQty();
                 cart.setQty(Integer.parseInt(holder.numberButton.getNumber()));
                 cart.setPrice(cart.getQty()*Unitprice);
@@ -95,6 +100,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
+    }
+
+    public double getUnitPrice(double price,int qty){
+        return price/qty;
     }
 
     public void deleteItem(String id){

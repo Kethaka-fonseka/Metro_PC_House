@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category_view extends AppCompatActivity {
+public class Category_view extends AppCompatActivity implements  ItemAdapter.OnItemClickListener{
     private RecyclerView recyclerView;
     private ItemAdapter adapter;
     private List<Item> itemList;
@@ -36,7 +36,7 @@ public class Category_view extends AppCompatActivity {
         itemList = new ArrayList<>();
         adapter = new ItemAdapter(this, itemList);
         recyclerView.setAdapter(adapter);
-
+        adapter.setOnItemClickListener(Category_view.this);
         dbRef= FirebaseDatabase.getInstance().getReference().child("Item");
         dbRef.orderByChild("category").equalTo(category).addValueEventListener(new ValueEventListener() {
             @Override
@@ -59,5 +59,13 @@ public class Category_view extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void OnItemClick(int position) {
+        Intent intent=new Intent(this,Item_Display.class);
+        Item item1=itemList.get(position);
+        intent.putExtra("item",item1);
+        startActivity(intent);
     }
 }

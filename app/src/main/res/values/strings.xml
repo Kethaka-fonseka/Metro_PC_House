@@ -83,4 +83,6 @@
     <string name="EnterCustomerPhone">Enter Customer Phone Number</string>
     <string name="EditCustomerDetails">Edit Customer Details</string>
     <string name="ViewMyProducts">View My Products</string>
+    <string name="category_page">Category</string>
+    <string name="result">Search Results</string>
 </resources>

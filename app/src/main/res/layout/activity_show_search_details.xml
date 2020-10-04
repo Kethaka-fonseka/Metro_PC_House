@@ -9,36 +9,46 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="130dp"
+        android:background="@drawable/background"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="304dp"
         tools:layout_editor_absoluteY="1dp">
 
-        <TextView
-            android:id="@+id/searchResult"
-            android:layout_width="183dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/searchr"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_show_search_details"
-            android:layout_width="406dp"
-            android:layout_height="556dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="411dp"
+            android:layout_height="642dp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchResult"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView3">
 
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView3"
+            android:layout_width="409dp"
+            android:layout_height="93dp"
+            android:background="@drawable/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="140dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/result"
+            android:textColor="#E6E6E6"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

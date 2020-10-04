@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +32,16 @@ public class CategoryViewAdapter extends RecyclerView.Adapter<CategoryViewAdapte
     DatabaseReference dbRef;
     FirebaseAuth fAuth;
 
+    private ItemAdapter.OnItemClickListener mLister;
+
+    public interface OnItemClickListener{
+        void OnItemClick(int position);
+    }
+
+    public void setOnItemClickListener(ItemAdapter.OnItemClickListener listener){
+        mLister=listener;
+
+    }
 
 
 
@@ -80,13 +93,25 @@ public class CategoryViewAdapter extends RecyclerView.Adapter<CategoryViewAdapte
 
         TextView textViewName1,textViewPrice1;
         ImageView imageView1;
-
+        CardView parent_layout;
         public CatViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView1=itemView.findViewById(R.id.category_view_id);
             textViewName1=itemView.findViewById(R.id.category_view_name);
             textViewPrice1=itemView.findViewById(R.id.category_view_price);
+            parent_layout=itemView.findViewById(R.id.card_category);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mLister!=null) {
+                        int position = getAdapterPosition();
+                        if (position!=RecyclerView.NO_POSITION) {
+                            mLister.OnItemClick(position);
 
+                        }
+                    }
+                }
+            });
 
         }
     }
