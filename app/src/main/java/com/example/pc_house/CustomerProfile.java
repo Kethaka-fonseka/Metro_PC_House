@@ -82,7 +82,8 @@ public class CustomerProfile extends AppCompatActivity {
         viewMyProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openViewMyProductDetails();
+                Intent intent = new Intent(getApplicationContext(), ShowProductDetails.class );
+                startActivity(intent);
             }
         });
 
@@ -120,12 +121,6 @@ public class CustomerProfile extends AppCompatActivity {
         });
 
     }
-
-    private void openViewMyProductDetails() {
-        Intent intent = new Intent(this, ShowProductDetals.class );
-        startActivity(intent);
-    }
-
 
     private void openAddressDetails() {
         Intent intent = new Intent(this, ShowAddressDetails.class );

@@ -22,11 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowProductDetals extends AppCompatActivity {
+public class ShowProductDetails extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ProductAdapter adapter;
-    List<Product> productList;
+    List<Item> productList;
     DatabaseReference dbRef;
     Button productbtn;
 
@@ -45,7 +45,7 @@ public class ShowProductDetals extends AppCompatActivity {
         productbtn = findViewById(R.id.addNewProduct);
 
 
-        dbRef= FirebaseDatabase.getInstance().getReference().child("Product Details");
+        dbRef= FirebaseDatabase.getInstance().getReference().child("Item");
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -53,7 +53,7 @@ public class ShowProductDetals extends AppCompatActivity {
                 if (dataSnapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
 
-                        Product prod=dataSnapshot1.getValue(Product.class);
+                        Item prod=dataSnapshot1.getValue(Item.class);
                         productList.add(prod);
 
                     }
@@ -73,7 +73,7 @@ public class ShowProductDetals extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(ShowProductDetals.this,AddNewProduct.class);
+                Intent intent = new Intent(ShowProductDetails.this,AddNewProduct.class);
                 startActivity(intent);
 
             }

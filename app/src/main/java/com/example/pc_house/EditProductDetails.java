@@ -19,10 +19,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditProductDetails extends AppCompatActivity {
 
-    EditText editproductname,editproductcategory,editdescription,editprice;
+    EditText editproductid,editproductname,editproductcategory,editproductquantity,editprice,editproductURL;
     Button btnSaveProduct;
     DatabaseReference dbRef;
-    Product product;
+    Item item;
 
 
 
@@ -31,23 +31,29 @@ public class EditProductDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product_details);
 
-        editproductname = findViewById(R.id.editproductname);
-        editproductcategory = findViewById(R.id.editcategory);
-        editdescription = findViewById(R.id.editdescription);
-        editprice = findViewById(R.id.editprice);
+        editproductid = findViewById(R.id.productid);
+        editproductname = findViewById(R.id.productname);
+        editprice = findViewById(R.id.price);
+        editproductcategory = findViewById(R.id.prodcategory);
+        editproductquantity = findViewById(R.id.productquantity);
+        editproductURL = findViewById(R.id.productURL);
+
 
         btnSaveProduct = findViewById(R.id.editconfirmProduct);
 
-        product= new Product();
+        item= new Item();
 
 
         //get passed object
         Intent intent = getIntent();
-        product = intent.getParcelableExtra("prod");
-        editproductname.setText(product.getProductName());
-        editproductcategory.setText(product.getProductCategory());
-        editdescription.setText(product.getProductDescription());
-        editprice.setText(product.getPrice());
+        item = intent.getParcelableExtra("item");
+
+        editproductid.setText(item.getID());
+        editproductname.setText(item.getName());
+        editprice.setText((int) item.getPrice());
+        editproductcategory.setText(item.getCategory());
+        editproductquantity.setText(item.getQty());
+        editproductURL.setText(item.getUrl());
 
 
 
@@ -61,17 +67,18 @@ public class EditProductDetails extends AppCompatActivity {
                 dbRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.hasChild(String.valueOf(product.getProductID()))){
+                        if(snapshot.hasChild(String.valueOf(item.getID()))){
 
-                            product.setProductName(editproductname.getText().toString().trim());
-                            product.setProductCategory(editproductcategory.getText().toString().trim());
-                            product.setProductDescription(editdescription.getText().toString().trim());
-                            product.setPrice(editprice.getText().toString().trim());
+                            item.setName(editproductname.getText().toString().trim());
+                            item.setPrice(Integer.parseInt(editprice.getText().toString().trim()));
+                            item.setCategory(editproductcategory.getText().toString().trim());
+                            item.setQty(Integer.parseInt(editproductquantity.getText().toString().trim()));
+                            item.setUrl(editproductURL.getText().toString().trim());
 
-                            dbRef.child(String.valueOf(product.getProductID())).setValue(product);
+                            dbRef.child(String.valueOf(item.getID())).setValue(item);
 
                             Toast.makeText(getApplicationContext(), "Data Updated Successfully", Toast.LENGTH_SHORT).show();
-                            Intent intent1 = new Intent(EditProductDetails.this,ShowProductDetals.class);
+                            Intent intent1 = new Intent(EditProductDetails.this, ShowProductDetails.class);
                             startActivity(intent1);
 
                         }else{

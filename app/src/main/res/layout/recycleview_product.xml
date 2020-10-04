@@ -20,6 +20,19 @@
             android:layout_height="199dp">
 
             <TextView
+                android:id="@+id/prodidR"
+                android:layout_width="210dp"
+                android:layout_height="25dp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.138"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.093" />
+
+            <TextView
                 android:id="@+id/productnameR"
                 android:layout_width="210dp"
                 android:layout_height="25dp"
@@ -31,6 +44,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.093" />
+
+            <TextView
+                android:id="@+id/priceR"
+                android:layout_width="210dp"
+                android:layout_height="25dp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.138"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.532" />
 
             <TextView
                 android:id="@+id/prodcategoryR"
@@ -46,7 +72,20 @@
                 app:layout_constraintVertical_bias="0.239" />
 
             <TextView
-                android:id="@+id/proddescriptionR"
+                android:id="@+id/prodquantityR"
+                android:layout_width="210dp"
+                android:layout_height="25dp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.138"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.532" />
+
+            <TextView
+                android:id="@+id/prodURLR"
                 android:layout_width="210dp"
                 android:layout_height="25dp"
                 android:fontFamily="sans-serif-condensed"
@@ -58,18 +97,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.385" />
 
-            <TextView
-                android:id="@+id/priceR"
-                android:layout_width="210dp"
-                android:layout_height="25dp"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.138"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.532" />
+
 
             <ImageButton
                 android:id="@+id/productupdate"

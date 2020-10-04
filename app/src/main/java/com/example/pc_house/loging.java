@@ -58,7 +58,6 @@ public class loging extends AppCompatActivity {
                         if(task.isSuccessful()){
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                             Toast.makeText(getApplicationContext(), "login successful", Toast.LENGTH_SHORT).show();
-
                         }
                         else{
                             Toast.makeText(getApplicationContext(),"login Unsuccessful",Toast.LENGTH_SHORT).show();

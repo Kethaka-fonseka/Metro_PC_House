@@ -3,9 +3,7 @@ package com.example.pc_house;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,36 +15,35 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.List;
-
 
 
 public class AddNewProduct extends AppCompatActivity {
 
-    private static ArrayList list;
-    EditText addProductname,addProductCategory,addDescription,addPrice;
+    //private static ArrayList list;
+    EditText addProductID,addProductname,addProductCategory,addProdQuantity, addProductPrice,addProductURL;
     Button btnConfirmProduct;
     DatabaseReference dbRef;
-    Product prod;
+    Item item;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
-        list=new ArrayList<Integer>();
+        //list=new ArrayList<Integer>();
+        addProductID = findViewById(R.id.productid);
         addProductname = findViewById(R.id.productname);
+        addProductPrice = findViewById(R.id.price);
         addProductCategory = findViewById(R.id.prodcategory);
-        addDescription = findViewById(R.id.proddescription);
-        addPrice = findViewById(R.id.price);
+        addProdQuantity = findViewById(R.id.productquantity);
+        addProductURL = findViewById(R.id.productURL);
 
         btnConfirmProduct = findViewById(R.id.confirmProduct);
 
 
-        prod = new Product();
-        dbRef= FirebaseDatabase.getInstance().getReference().child("Product Details");
+        item = new Item();
+        dbRef= FirebaseDatabase.getInstance().getReference().child("Item");
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -54,15 +51,15 @@ public class AddNewProduct extends AppCompatActivity {
                 if (dataSnapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
 
-                        Product prod=dataSnapshot1.getValue(Product.class);
-                        list.add(prod.getProductID());
+                        Item item=dataSnapshot1.getValue(Item.class);
+                        // list.add(item.getID());
 
 
                     }
 
 
                 }
-                else{}
+                // else{}
             }
 
             @Override
@@ -76,14 +73,22 @@ public class AddNewProduct extends AppCompatActivity {
         btnConfirmProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String prodID = addProductID.getText().toString().trim();
                 String prodName = addProductname.getText().toString().trim();
                 String prodCategory = addProductCategory.getText().toString().trim();
-                String prodDescription = addDescription.getText().toString().trim();
-                String prodPrice = addPrice.getText().toString().trim();
+                String prodQuantity = addProdQuantity.getText().toString().trim();
+                String prodPrice = addProductPrice.getText().toString().trim();
+                String prodURL = addProductURL.getText().toString().trim();
 
 
                 try {
+                    if (prodID.isEmpty()) {
+
+                        addProductID.setError("Please enter your product ID");
+                        return;
+
+
+                    }
                     if (prodName.isEmpty()) {
 
                         addProductname.setError("Please enter your product name");
@@ -97,31 +102,39 @@ public class AddNewProduct extends AppCompatActivity {
                         return;
 
                     }
-                    if (prodDescription.isEmpty()) {
+                    if (prodQuantity.isEmpty()) {
 
-                        addDescription.setError("Please enter your product description");
+                        addProdQuantity.setError("Please enter your product quantity");
                         return;
 
                     }
                     if (prodPrice.isEmpty()) {
 
-                        addPrice.setError("Please enter your product ");
+                        addProductPrice.setError("Please enter your product price");
+                        return;
+
+                    }
+                    if (prodURL.isEmpty()) {
+
+                        addProductURL.setError("Please enter your product URL");
                         return;
 
                     }
 
-                    prod.setProductID(generateProductIDs());
-                    prod.setProductName(addProductname.getText().toString().trim());
-                    prod.setProductCategory(addProductCategory.getText().toString().trim());
-                    prod.setProductDescription(addDescription.getText().toString().trim());
-                    prod.setPrice(addPrice.getText().toString().trim());
 
-                    dbRef.child(String.valueOf(prod.getProductID())).setValue(prod);
+                    item.setID(addProductID.getText().toString().trim());
+                    item.setName(addProductname.getText().toString().trim());
+                    item.setCategory(addProductCategory.getText().toString().trim());
+                    item.setQty(Integer.parseInt(addProdQuantity.getText().toString().trim()));
+                    item.setPrice(Double.parseDouble(addProductPrice.getText().toString().trim()));
+                    item.setUrl(addProductURL.getText().toString().trim());
+
+                    dbRef.child(String.valueOf(item.getID())).setValue(item);
 
                     Toast.makeText(getApplicationContext(), "Successfully Added !!!", Toast.LENGTH_SHORT).show();
                     clearControls();
-                    Intent intent = new Intent(AddNewProduct.this, ShowProductDetals.class);
-                    startActivity(intent);
+                    // Intent intent = new Intent(AddNewProduct.this, ShowProductDetals.class);
+                    //  startActivity(intent);
 
                 }catch(NumberFormatException e){
 
@@ -139,11 +152,12 @@ public class AddNewProduct extends AppCompatActivity {
 
     private void clearControls(){
 
-
+        addProductID.setText("");
         addProductname.setText("");
         addProductCategory.setText("");
-        addDescription.setText("");
-        addPrice.setText("");
+        addProdQuantity.setText("");
+        addProductPrice.setText("");
+        addProductURL.setText("");
 
     }
 
@@ -153,7 +167,7 @@ public class AddNewProduct extends AppCompatActivity {
     //=====================
 
 
-    public static int generateProductIDs() {
+/*    public static int generateProductIDs() {
 
         int id;
         int next =list.size();
@@ -164,5 +178,5 @@ public class AddNewProduct extends AppCompatActivity {
             id = CommonConstants.Product_ID_Prefix + next;
         }
         return id;
-    }
+    }*/
 }

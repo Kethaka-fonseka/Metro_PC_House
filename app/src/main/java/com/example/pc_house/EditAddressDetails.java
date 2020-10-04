@@ -86,11 +86,7 @@ public class EditAddressDetails extends AppCompatActivity {
                         }else{
 
                             Toast.makeText(getApplicationContext(), "Data Updated Unsuccessfully", Toast.LENGTH_SHORT).show();
-
                         }
-
-
-
                     }
 
                     @Override

@@ -26,7 +26,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 
     private Context mCtx;
-    private List<Product> productList;
+    private List<Item> productList;
     private OnItemClickListener mLister;
 
     public interface OnItemClickListener {
@@ -39,7 +39,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     }
 
-    public ProductAdapter( Context mCtx, List<Product> productList) {
+    public ProductAdapter( Context mCtx, List<Item> productList) {
 
         this.mCtx = mCtx;
         this.productList = productList;
@@ -57,19 +57,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull final ProductViewHolder holder, final int position) {
-        final Product prod =productList.get(position);
+        final Item prod =productList.get(position);
 
-        holder.productname.setText(prod.getProductName());
-        holder.productcategory.setText(prod.getProductCategory());
-        holder.proddescription.setText(prod.getProductDescription());
-        holder.pricer.setText(prod.getPrice());
+        holder.productid.setText(prod.getID());
+        holder.productname.setText(prod.getName());
+        holder.productprice.setText((int) prod.getPrice());
+        holder.productcategory.setText(prod.getCategory());
+        holder.productquantity.setText(prod.getQty());
+        holder.productURL.setText(prod.getUrl());
 
         holder.productupdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //pass object using intent
                 Intent intent = new Intent(holder.productupdate.getContext(),EditProductDetails.class);
-                Product prod= productList.get(position);
+                Item prod= productList.get(position);
                 intent.putExtra("prod",prod);
                 holder.productupdate.getContext().startActivity(intent);
                 //end pass object intent
@@ -80,12 +82,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.productdelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("Product Details").child(String.valueOf(prod.getProductID()));
+                final DatabaseReference dbRef= FirebaseDatabase.getInstance().getReference().child("Item").child(String.valueOf(prod.getID()));
                 dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         dbRef.removeValue();
-                        Intent intent=new Intent(holder.productdelete.getContext(),ShowProductDetals.class);
+                        Intent intent=new Intent(holder.productdelete.getContext(), ShowProductDetails.class);
                         holder.productdelete.getContext().startActivity(intent);
 
                     }
@@ -111,16 +113,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView productname,productcategory,proddescription,pricer;
+        TextView productid,productname,productprice,productcategory,productquantity,productURL;
         ImageButton productupdate,productdelete;
 
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
+            productid = itemView.findViewById(R.id.prodidR);
             productname = itemView.findViewById(R.id.productnameR);
+            productprice = itemView.findViewById(R.id.priceR);
             productcategory = itemView.findViewById(R.id.prodcategoryR);
-            proddescription = itemView.findViewById(R.id.proddescriptionR);
-            pricer = itemView.findViewById(R.id.priceR);
+            productquantity = itemView.findViewById(R.id.prodquantityR);
+            productURL = itemView.findViewById(R.id.prodURLR);
 
             productupdate=itemView.findViewById(R.id.productupdate);
             productdelete=itemView.findViewById(R.id.productdelete);

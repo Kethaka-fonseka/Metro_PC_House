@@ -15,27 +15,25 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/description2"
-            android:layout_width="408dp"
-            android:layout_height="59dp"
-            android:text="@string/EditProduct"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:layout_marginLeft="95dp"
-            android:layout_marginRight="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.213" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"></androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
-        android:id="@+id/editproductname"
+        android:id="@+id/productid"
+        android:layout_width="360dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:background="@drawable/custome_input"
+        android:hint="Product ID"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/productname"
         android:layout_width="360dp"
         android:layout_height="51dp"
         android:ems="10"
@@ -46,41 +44,11 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:paddingStart="10dp"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp" />
+        android:paddingEnd="10dp"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editcategory"
-        android:layout_width="360dp"
-        android:layout_height="51dp"
-        android:ems="10"
-        android:hint="@string/ProductCategory"
-        android:background="@drawable/custome_input"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:paddingStart="10dp"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp" />
-
-    <EditText
-        android:id="@+id/editdescription"
-        android:layout_width="360dp"
-        android:layout_height="51dp"
-        android:ems="10"
-        android:hint="@string/ProuctDescription"
-        android:background="@drawable/custome_input"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:paddingStart="10dp"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp" />
-
-    <EditText
-        android:id="@+id/editprice"
+        android:id="@+id/price"
         android:layout_width="360dp"
         android:layout_height="51dp"
         android:ems="10"
@@ -91,9 +59,52 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:paddingStart="10dp"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp" />
+        android:paddingEnd="10dp"
+        android:inputType="textPersonName" />
 
+    <EditText
+        android:id="@+id/prodcategory"
+        android:layout_width="360dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="@string/ProductCategory"
+        android:background="@drawable/custome_input"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/productquantity"
+        android:layout_width="360dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="Product Quantity"
+        android:background="@drawable/custome_input"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/productURL"
+        android:layout_width="360dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="Product URL"
+        android:background="@drawable/custome_input"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:inputType="textPersonName" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -105,7 +116,6 @@
             android:layout_height="51dp"
             android:background="@drawable/custome_button"
             android:text="@string/save"
-            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

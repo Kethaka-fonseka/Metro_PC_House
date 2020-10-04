@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditCustomerDetails"></activity>
+        <activity android:name=".EditProductDetails"></activity>
+        <activity android:name=".AddNewProduct" />
+        <activity android:name=".ShowProductDetails" />
+        <activity android:name=".EditCustomerDetails" />
         <activity android:name=".ShowSearchDetails" />
         <activity android:name=".Category_view" />
         <activity android:name=".Category" />
@@ -45,6 +48,9 @@
         <activity android:name=".Cart" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Welcome" />
+
+
+
         <activity
             android:name=".CustomerProfile"
             android:parentActivityName=".MainActivity" />

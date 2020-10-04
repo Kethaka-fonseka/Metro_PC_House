@@ -45,12 +45,9 @@ public class Category_view extends AppCompatActivity implements  ItemAdapter.OnI
                     for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                         Item item1=dataSnapshot1.getValue(Item.class);
                         itemList.add(item1);
-
                     }
                     adapter.notifyDataSetChanged();
-
                 }
-
             }
 
             @Override

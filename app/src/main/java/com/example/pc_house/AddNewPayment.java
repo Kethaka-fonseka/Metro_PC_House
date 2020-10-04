@@ -46,26 +46,18 @@ public class AddNewPayment extends AppCompatActivity {
 
 
         pay = new Payment();
-
         dbRef= FirebaseDatabase.getInstance().getReference().child("Payment Details").child(firebaseAuth.getCurrentUser().getUid());
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 if (dataSnapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-
                         Payment add=dataSnapshot1.getValue(Payment.class);
                         list.add(add.getPaymentId());
-
-
                     }
-
-
                 }
                 else{}
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
