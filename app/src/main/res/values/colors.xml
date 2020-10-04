@@ -16,6 +16,7 @@
     <color name="followingBg">#49BEFF</color>
     <color name="grey">#E5E5E5</color>
     <color name="white">#FFFFFF</color>
-    <color name="greenBtn">#708E0B</color>
+    <color name="greenBtn">#4CAF50</color>
     <color name="custBtn">#3B8A19</color>
+    <color name="AddandDeduct">#00FF0A</color>
 </resources>
