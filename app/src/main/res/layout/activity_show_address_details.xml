@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/custome_button"
         android:layout_marginStart="0dp"
-        android:background="@drawable/search_button"
         android:textColor="#FFFFFF"
         android:text="@string/addNewAddress" />
 
