@@ -33,7 +33,7 @@ public class CustomerProfile extends AppCompatActivity {
 
         editProfile =findViewById(R.id.editProfile);
         paymentDetails =findViewById(R.id.paymentDetails);
-        paymentHistory =findViewById(R.id.paymentHistory);
+
         shippingDetails =findViewById(R.id.shippingDetails);
         viewMyProducts =findViewById(R.id.viewMyProducts);
         myOrders = findViewById(R.id.myOrdersBtn);

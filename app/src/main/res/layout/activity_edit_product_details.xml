@@ -105,6 +105,7 @@
             android:layout_height="51dp"
             android:background="@drawable/custome_button"
             android:text="@string/save"
+            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
