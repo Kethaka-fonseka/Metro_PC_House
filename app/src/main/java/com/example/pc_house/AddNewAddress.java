@@ -149,7 +149,7 @@ public class AddNewAddress extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Successfully Added !!!", Toast.LENGTH_SHORT).show();
                     clearControls();
-                    Intent intent = new Intent(AddNewAddress.this, CustomerProfile.class);
+                    Intent intent = new Intent(AddNewAddress.this, MainActivity.class);
                     startActivity(intent);
 
                 }catch(NumberFormatException e){

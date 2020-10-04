@@ -58,7 +58,7 @@ public class EditCustomerDetails extends AppCompatActivity {
 
 
 
-                dbRef = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseAuth.getCurrentUser().getUid());
+                dbRef = FirebaseDatabase.getInstance().getReference().child("User");
                 dbRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
