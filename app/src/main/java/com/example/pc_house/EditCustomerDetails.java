@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,31 +23,32 @@ public class EditCustomerDetails extends AppCompatActivity {
     Button CustSaveBtn;
     DatabaseReference dbRef;
     User user;
+    FirebaseAuth firebaseAuth;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_product_details);
+        setContentView(R.layout.activity_edit_customer_details);
 
         EnterCustomerName = findViewById(R.id.EnterCustomerName);
         EnterCustomerID = findViewById(R.id.EnterCustomerID);
         EnterCustomerEmail = findViewById(R.id.EnterCustomerEmail);
         EnterCustomerPhone = findViewById(R.id.EnterCustomerPhone);
-
+        firebaseAuth = FirebaseAuth.getInstance();
         CustSaveBtn = findViewById(R.id.CustSaveBtn);
 
-        user= new User();
+
 
 
         //get passed object
         Intent intent = getIntent();
-        user = intent.getParcelableExtra("User");
+        user = intent.getParcelableExtra("user");
         EnterCustomerName.setText(user.getName());
         EnterCustomerID.setText(user.getId());
         EnterCustomerEmail.setText(user.getEmail());
-        EnterCustomerPhone.setText(user.getPhone());
+        EnterCustomerPhone.setText(String.valueOf(user.getPhone()));
 
 
 
@@ -56,18 +58,18 @@ public class EditCustomerDetails extends AppCompatActivity {
 
 
 
-                dbRef = FirebaseDatabase.getInstance().getReference().child("User");
+                dbRef = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseAuth.getCurrentUser().getUid());
                 dbRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.hasChild(String.valueOf(user.getId()))){
+                        if(snapshot.hasChild(user.getId())){
 
                             user.setName(EnterCustomerName.getText().toString().trim());
                             user.setId(EnterCustomerID.getText().toString().trim());
                             user.setEmail(EnterCustomerEmail.getText().toString().trim());
                             user.setPhone(Integer.parseInt(EnterCustomerPhone.getText().toString().trim()));
 
-                            dbRef.child(String.valueOf(user.getId())).setValue(user);
+                            dbRef.child(user.getId()).setValue(user);
 
                             Toast.makeText(getApplicationContext(), "Data Updated Successfully", Toast.LENGTH_SHORT).show();
                             Intent intent1 = new Intent(EditCustomerDetails.this,CustomerProfile.class);

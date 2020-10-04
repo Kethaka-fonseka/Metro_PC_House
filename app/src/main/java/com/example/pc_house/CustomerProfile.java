@@ -51,7 +51,7 @@ public class CustomerProfile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                   User user = dataSnapshot.getValue(User.class);
+                    User user = dataSnapshot.getValue(User.class);
                     customerPhone.setText(String.valueOf(user.getPhone()));
                     customerId.setText(user.getId());
                     customerEmail.setText(user.getEmail());
@@ -89,7 +89,14 @@ public class CustomerProfile extends AppCompatActivity {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openUserDetails();
+                Intent intent = new Intent(CustomerProfile.this, EditCustomerDetails.class );
+                User u1 = new User();
+                u1.setName(customerName.getText().toString().trim());
+                u1.setEmail(customerEmail.getText().toString().trim());
+                u1.setPhone(Integer.parseInt(customerPhone.getText().toString().trim()));
+                u1.setId(customerId.getText().toString().trim());
+                intent.putExtra("user",u1);
+                startActivity(intent);
             }
         });
 
@@ -116,11 +123,6 @@ public class CustomerProfile extends AppCompatActivity {
 
     private void openViewMyProductDetails() {
         Intent intent = new Intent(this, ShowProductDetals.class );
-        startActivity(intent);
-    }
-
-    private void openUserDetails() {
-        Intent intent = new Intent(getApplicationContext(), EditCustomerDetails.class );
         startActivity(intent);
     }
 

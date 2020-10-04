@@ -9,38 +9,23 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="94dp">
 
         <TextView
 
-            android:layout_width="408dp"
-            android:layout_height="59dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/EditCustomerDetails"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="#708E0B"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.213" />
+            app:layout_constraintTop_toTopOf="parent" />
+        />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <EditText
-
-        android:id="@+id/EnterCustomerName"
-        android:layout_width="360dp"
-        android:layout_height="51dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custome_input"
-        android:ems="10"
-        android:hint="@string/EnterCustName"
-
-        android:paddingStart="10dp"
-        android:paddingLeft="10dp" />
 
     <EditText
 
@@ -54,6 +39,22 @@
         android:background="@drawable/custome_input"
         android:ems="10"
         android:hint="@string/EnterCustID"
+
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp" />
+
+    <EditText
+
+        android:id="@+id/EnterCustomerName"
+        android:layout_width="360dp"
+        android:layout_height="51dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custome_input"
+        android:ems="10"
+        android:hint="@string/EnterCustName"
 
         android:paddingStart="10dp"
         android:paddingLeft="10dp" />
